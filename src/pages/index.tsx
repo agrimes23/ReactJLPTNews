@@ -20,7 +20,7 @@ const HomePage = () => {
 
 
   return (
-    <div className="flex min-h-screen min-w-screen items-center mt-10">
+    <div className="bg-purple-500 flex min-h-screen min-w-screen items-center mt-10">
       {news?.articles.map((article: any) => {
 
         return(
@@ -30,8 +30,7 @@ const HomePage = () => {
           </div>
         )
       })}
-      <h1>Welcome to My Next.js App</h1>
-      <p>This is the main page of my Next.js app.</p>
+      
     </div>
   );
 };
