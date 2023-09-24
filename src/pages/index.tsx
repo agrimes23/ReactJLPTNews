@@ -23,6 +23,12 @@ const HomePage = () => {
   return (
     <div className="bg-purple-500 flex min-h-screen min-w-screen items-center mt-10">
       {news?.articles.map((article: any) => {
+          // TODO: // 1. loop through articles
+                // 2. Make function that:
+                  // - loops through each word in the article
+                  // - compares each article word to the words in the kanjiList array
+                // 3. if it does equal, then return that word in a span with the color red
+                    // - if it doesn't equal, return that word as normal black color
 
 
         return(
