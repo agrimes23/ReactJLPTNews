@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getNews, search } from '../services/api';
+import 'tailwindcss/tailwind.css';
 
 interface Article {
   id: number;
@@ -43,7 +44,7 @@ const HomePage: React.FC = () => {
       if (kanjiList.some((kanji) => kanji === word)) {
         formattedDescription.push(
           <span key={index} className="text-red-500 font-bold" style={{ color: 'red' }}>
-            ***{word}***
+            {word}
           </span>
         );
       } else {
@@ -56,11 +57,11 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="bg-purple-500 flex min-h-screen min-w-screen items-center mt-10">
+    <div className="flex flex-col min-h-screen min-w-screen items-center my-10">
       {news.articles.map((article, index) => (
         <div key={index} className="mt-20 w-3/4">
-          <h4 style={{ color: 'green' }}>{article.title}</h4>
-          <p className="text-yellow-600">{formatArticleDescription(article.description)}</p>
+          <h4 className="text-green-500 text-xl">{article.title}</h4>
+          <p className="">{formatArticleDescription(article.description)}</p>
         </div>
       ))}
     </div>
