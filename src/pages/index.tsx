@@ -33,13 +33,16 @@ const HomePage: React.FC = () => {
   const formatArticleDescription = (description: string) => {
     // ✅ wordsInDescription works!
     // wordsInDescription is an array of words from that description
-    const wordsInDescription = description.split(/(\p{Script=Hiragana}+|\p{Script=Katakana}+|[一-龯々]+)/u); // Split based on Japanese characters
+    const wordsInDescription = description?.split(/(\p{Script=Hiragana}+|\p{Script=Katakana}+|[一-龯々]+)/u).filter(Boolean); // Split based on Japanese characters
     const formattedDescription: JSX.Element[] = [];
 
-    wordsInDescription.forEach((word, index) => {
-      if (kanjiList.some((kanji) => kanji.word === word)) {
+    
+
+    if(wordsInDescription) {
+    wordsInDescription.forEach((word: any, index: number) => {
+      if (kanjiList.some((kanji) => kanji === word)) {
         formattedDescription.push(
-          <span key={index} style={{ color: 'red' }}>
+          <span key={index} className="text-red-500 font-bold" style={{ color: 'red' }}>
             ***{word}***
           </span>
         );
@@ -47,6 +50,7 @@ const HomePage: React.FC = () => {
         formattedDescription.push(<React.Fragment key={index}>{word}</React.Fragment>);
       }
     });
+  }
 
     return formattedDescription;
   };
@@ -55,8 +59,8 @@ const HomePage: React.FC = () => {
     <div className="bg-purple-500 flex min-h-screen min-w-screen items-center mt-10">
       {news.articles.map((article, index) => (
         <div key={index} className="mt-20 w-3/4">
-          <h4 style={{ color: 'red' }}>{article.title}</h4>
-          <p>{formatArticleDescription(article.description)}</p>
+          <h4 style={{ color: 'green' }}>{article.title}</h4>
+          <p className="text-yellow-600">{formatArticleDescription(article.description)}</p>
         </div>
       ))}
     </div>
