@@ -26,6 +26,10 @@ const HomePage: React.FC = () => {
   const [kanjiList, setKanjiList] = useState<Kanji[]>([]);
   const [news, setNews] = useState<{ articles: Article[] }>({ articles: [] });
 
+  // const getKanjiLevel = async (level: string) => {
+  //   const searchKanji = await search(level);
+  // }
+
   const fetchNews = async () => {
     try {
       const topNews = await getNews();
@@ -57,7 +61,7 @@ const HomePage: React.FC = () => {
         // if it is true, it adds the text as bolded and red in the array
         if (kanjiList.some((kanji) => kanji === word)) {
           formattedDescription.push(
-            <span key={index} className="text-red-500 font-bold" style={{ color: 'red' }}>
+            <span key={index} className="text-green-500 font-bold" style={{ color: 'red' }}>
               {word}
             </span>
           );
@@ -73,11 +77,30 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen min-w-screen items-center my-10">
+      
+      {/* button container */}
+      <div className="bg-blue-200 py-5 rounded">
+        <button className="bg-blue-400 rounded px-5 py-2 mx-5 hover:scale-110">
+          <h4>5 級</h4>
+        </button>
+        <button className="bg-green-400 rounded px-5 py-2 mx-5 hover:scale-110">
+          <h4>4 級</h4>
+        </button>
+        <button className="bg-yellow-400 rounded px-5 py-2 mx-5 hover:scale-110">
+          <h4>3 級</h4>
+        </button>
+        <button className="bg-orange-400 rounded px-5 py-2 mx-5 hover:scale-110">
+          <h4>2 級</h4>
+        </button>
+        <button className="bg-red-400 rounded px-5 py-2 mx-5 hover:scale-110">
+          <h4>1 級</h4>
+        </button>
+      </div>
 
       {/* loop through each top headline title and description to display */}
       {news.articles.map((article, index) => (
-        <div key={index} className="mt-20 w-3/4">
-          <h4 className="text-green-500 text-xl">{article.title}</h4>
+        <div key={index} className="mt-20 w-3/4 max-w-3xl rounded px-16 py-10 bg-slate-200">
+          <h4 className="text-xl font-bold">{article.title}</h4>
           {/* function to loop through kanjiList and each word in top headline description */}
           <p className="">{formatArticleDescription(article.description)}</p>
         </div>

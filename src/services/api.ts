@@ -11,7 +11,8 @@ export const getNews = async () => {
 };
 
 export const search = async () => {
-  const response = await api.get('/search');
+  // const response = await api.get(`/search/${level}`);
+  const response = await api.get(`/search`);
   const results = response.data;
   return results;
 };
