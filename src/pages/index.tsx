@@ -25,18 +25,28 @@ interface Kanji {
 const HomePage: React.FC = () => {
   const [kanjiList, setKanjiList] = useState<Kanji[]>([]);
   const [news, setNews] = useState<{ articles: Article[] }>({ articles: [] });
+  const [wordColor, setWordColor] = useState<string>("black")
 
-  const handleClickLevel = async (level: string) => {
-    console.log("button level: " + level)
-  //   const searchKanji = await search(level);
+  const handleClickLevel = async (level: string, color: string) => {
+    setWordColor(color)
+    try {
+      const topNews = await getNews();
+      const searchKanji = await search(level);
+      setKanjiList(searchKanji);
+      setNews(topNews);
+      
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+     
   }
 
   const fetchNews = async () => {
     try {
       const topNews = await getNews();
-      const searchKanji = await search();
+      
       setNews(topNews);
-      setKanjiList(searchKanji);
+      
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -62,7 +72,7 @@ const HomePage: React.FC = () => {
         // if it is true, it adds the text as bolded and red in the array
         if (kanjiList.some((kanji) => kanji === word)) {
           formattedDescription.push(
-            <span key={index} className="text-green-500 font-bold" style={{ color: 'red' }}>
+            <span key={index} className={`text-${wordColor}-500 font-bold`} >
               {word}
             </span>
           );
@@ -83,31 +93,31 @@ const HomePage: React.FC = () => {
       <div className="bg-blue-200 py-5 rounded">
         <button 
           className="bg-blue-400 focus:bg-blue-300 focus:border-2 focus:border-black rounded px-5 py-2 mx-5 hover:scale-110"
-          onClick={() => handleClickLevel("n5")}
+          onClick={() => handleClickLevel("n5", "blue")}
           >
           <h4>5 級</h4>
         </button>
         <button 
           className="bg-green-400 focus:bg-green-300 focus:border-2 focus:border-black rounded px-5 py-2 mx-5 hover:scale-110"
-          onClick={() => handleClickLevel("n4")}
+          onClick={() => handleClickLevel("n4", "green")}
           >
           <h4>4 級</h4>
         </button>
         <button 
           className="bg-yellow-400 focus:bg-yellow-300 focus:border-2 focus:border-black rounded px-5 py-2 mx-5 hover:scale-110"
-          onClick={() => handleClickLevel("n3")}
+          onClick={() => handleClickLevel("n3", "yellow")}
           >
           <h4>3 級</h4>
         </button>
         <button 
           className="bg-orange-400 focus:bg-orange-300 focus:border-2 focus:border-black rounded px-5 py-2 mx-5 hover:scale-110"
-          onClick={() => handleClickLevel("n2")}
+          onClick={() => handleClickLevel("n2", "orange")}
           >
           <h4>2 級</h4>
         </button>
         <button 
           className="bg-red-400 focus:bg-red-300 focus:border-2 focus:border-black rounded px-5 py-2 mx-5 hover:scale-110"
-          onClick={() => handleClickLevel("n1")}
+          onClick={() => handleClickLevel("n1", "red")}
           >
           <h4>1 級</h4>
         </button>
