@@ -12,7 +12,7 @@ function Navbar() {
     
     
     <>
-        <div className="flex justify-between px-10 bg-purple-300 w-screen py-4">
+        <div className="flex fixed justify-between top-0 z-10 px-10 bg-purple-300 w-screen py-5 shadow-md">
             <h1>ニュース</h1>
             <div className="">
                 <button
