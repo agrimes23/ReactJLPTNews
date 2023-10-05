@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getNews, search } from '../services/api';
 import 'tailwindcss/tailwind.css';
+import Navbar from '../components/navbar';
 
 interface Article {
   id: number;
@@ -87,8 +88,9 @@ const HomePage: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen min-w-screen items-center my-10">
-      
+    <div className="flex flex-col min-h-screen min-w-screen items-center">
+      <Navbar />
+      <h1 className="text-6xl my-14 font-bold">毎日ニュース</h1>
       {/* button container */}
       <div className="bg-blue-200 py-5 rounded">
         <button 
