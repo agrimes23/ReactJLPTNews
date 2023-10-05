@@ -20,7 +20,7 @@ function Navbar() {
                     className="block text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-150 ease-in-out"
                 >
                     <div
-                    className={`w-6 h-0.5 bg-gray-500 my-1 transition-all ${isOpen ? 'transform rotate-45' : ''}`}
+                    className={`w-6 h-0.5 bg-gray-500 my-1 transition-all ${isOpen ? 'transform rotate-45 fixed top-6' : ''}`}
                     ></div>
                     <div
                     className={`w-6 h-0.5 bg-gray-500 my-1 transition-all ${
@@ -28,12 +28,14 @@ function Navbar() {
                     }`}
                     ></div>
                     <div
-                    className={`w-6 h-0.5 bg-gray-500 my-1 transition-all ${isOpen ? 'transform -rotate-45' : ''}`}
+                    className={`w-6 h-0.5 bg-gray-500 my-1 transition-all ${isOpen ? 'transform -rotate-45 fixed top-6' : ''}`}
                     ></div>
                 </button>
                 {/* Your menu content */}
-                <div className={`absolute right-0 mt-2 w-48 bg-white shadow-lg rounded-lg ${isOpen ? '' : 'hidden'}`}>
-                    {/* Your menu items */}
+                <div className={`absolute left-0 w-full z-20 mt-8 text-right pr-10 bg-white shadow-lg rounded-lg ${isOpen ? '' : 'hidden'}`}>
+                    <h2>well heeey</h2>
+                    <h2>what's going on </h2>
+                    <h2>this</h2>
                 </div>
                 </div>
 
