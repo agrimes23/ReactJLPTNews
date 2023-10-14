@@ -1,4 +1,4 @@
-name: CI/CD
+name: Prevent Pushing Uncommented localhost URLs
 
 on:
   push:
@@ -6,15 +6,17 @@ on:
       - main
 
 jobs:
-  check:
+  check-local-host:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Check for uncommented dontpushthistomain
+      - name: Check for Uncommented localhost URLs
+        id: check
         run: |
-          if grep -q 'dontpushthistomain' dontpushthistomain; then
-            echo "Error: Uncommented 'dontpushthistomain' found. Aborting workflow."
+          #!/bin/bash
+          if grep -R "dontpushthistomain" ./src/services/api.ts; then
+            echo "Uncommented localhost URLs found. Push not allowed."
             exit 1
           else
-            echo "'dontpushthistomain' is properly commented."
+            echo "No uncommented localhost URLs found. Push is allowed."
           fi
