@@ -3,6 +3,8 @@ import { getNews, search } from '../services/api';
 import 'tailwindcss/tailwind.css';
 import Navbar from '../components/navbar';
 
+// looks good!!! Keep it up. uncommenting the url 
+
 interface Article {
   id: number;
   title: string;
