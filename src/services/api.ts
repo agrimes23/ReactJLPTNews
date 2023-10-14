@@ -4,7 +4,6 @@ import axios from 'axios';
 //   baseURL: "http://localhost:5000/api",
 // });
 
-// comment for testing
 const api = axios.create({
   baseURL: "http://dontpushthistomain:5000/api",
 });
