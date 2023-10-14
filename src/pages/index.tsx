@@ -87,6 +87,8 @@ const HomePage: React.FC = () => {
     return formattedDescription;
   };
 
+  // oh testing this out 
+
   return (
     <div className="flex flex-col min-h-screen min-w-screen items-center">
       <Navbar />
