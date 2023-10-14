@@ -15,7 +15,7 @@ jobs:
 
       - name: Validate URL
         run: |
-          if grep -q 'localhost' src/services/api.ts; then
-            echo "Error: Localhost URL detected in src/services/api.ts"
+          if grep -q 'dontpushthistomain' src/services/api.ts; then
+            echo "Error: dontpushthistomain URL detected in src/services/api.ts"
             exit 1
           fi
