@@ -23,7 +23,7 @@ jobs:
 
       - name: Check for Uncommented Localhost URL
         run: |
-          if grep -q 'http://localhost:5000/api' src/your-file.js; then
-            echo "Error: Uncommented localhost URL found in your code."
+          if grep -q 'http://dontpushthistomain:5000/api' src/services/api.ts; then
+            echo "Error: Uncommented dontpushthistomain URL found in your code."
             exit 1
           fi
