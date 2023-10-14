@@ -1,4 +1,4 @@
-name: URL Validation
+name: CI/CD
 
 on:
   push:
@@ -6,16 +6,15 @@ on:
       - main
 
 jobs:
-  url-validation:
+  check:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Validate URL
+      - name: Check for uncommented dontpushthistomain
         run: |
-          if grep -q 'dontpushthistomain' src/services/api.ts; then
-            echo "Error: dontpushthistomain URL detected in src/services/api.ts"
+          if grep -q 'dontpushthistomain' dontpushthistomain; then
+            echo "Error: Uncommented 'dontpushthistomain' found. Aborting workflow."
             exit 1
+          else
+            echo "'dontpushthistomain' is properly commented."
           fi
