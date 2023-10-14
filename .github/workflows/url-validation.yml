@@ -1,0 +1,21 @@
+name: URL Validation
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  url-validation:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Validate URL
+        run: |
+          if grep -q 'localhost' src/services/api.ts; then
+            echo "Error: Localhost URL detected in src/services/api.ts"
+            exit 1
+          fi
