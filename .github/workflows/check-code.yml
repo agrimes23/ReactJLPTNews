@@ -29,3 +29,6 @@ jobs:
           else
             exit 1
           fi
+      - name: Set Status Check
+        id: status-check
+        run: echo ::set-output name=check::failure::message=Uncommented localhost URL found::conclusion=failure
