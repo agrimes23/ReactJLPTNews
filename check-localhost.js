@@ -1,6 +1,6 @@
 const fs = require('fs');
 
-const filePath = 'src\services\api.ts'; // Update with the actual file path
+const filePath = 'src/services/api.ts'; // Update with the actual file path
 const fileContent = fs.readFileSync(filePath, 'utf8');
 
 // Check for uncommented localhost references
