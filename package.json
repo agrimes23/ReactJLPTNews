@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "test": "echo 'No tests to run'",
+    "test-localhost": "node check-localhost.js",
     "prepare": "husky install"
   },
   "dependencies": {
@@ -31,7 +32,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && git add ."
+      "pre-commit": "npm run test-localhost"
     }
   }
 }
