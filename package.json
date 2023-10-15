@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "echo 'No tests to run'",
+    "test": "node check-localhost.js",
     "test-localhost": "node check-localhost.js",
     "prepare": "husky install"
   },
