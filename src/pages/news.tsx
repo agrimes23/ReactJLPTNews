@@ -35,7 +35,8 @@ const HomePage: React.FC = () => {
   const { data: kanjiData, loading: kanjiLoading, error: kanjiError, refetch: refetchKanji } = useQuery(GET_KANJI, {
     variables: { level: kanjiLevel },
     onCompleted: (res: any) => {
-      console.log(JSON.stringify(res))    
+      console.log(JSON.stringify(res))
+      setKanjiList(res.getKanji.word)    
     },
     onError: (error: any) => {
       console.error("GraphQL error:", error);
