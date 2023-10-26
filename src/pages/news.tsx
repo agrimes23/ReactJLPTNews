@@ -20,7 +20,7 @@ const HomePage: React.FC = () => {
   const [kanjiList, setKanjiList] = useState<Kanji[]>([]);
   const [news, setNews] = useState<{ articles: Article[] }>({ articles: [] });
   const [wordColor, setWordColor] = useState<string>("black")
-  const { data: data } = useQuery<any>(GET_ARTICLES, {
+  const { data, loading } = useQuery<any>(GET_ARTICLES, {
     errorPolicy: "all",
     onCompleted: (res: any) => {
       console.log("complete", res);
