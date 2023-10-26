@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { getNews, search } from '../services/api';
+// import { getNews, search } from '../services/api';
 import 'tailwindcss/tailwind.css';
 import Navbar from '../components/navbar';
 import { useQuery } from '@apollo/client'
@@ -23,7 +23,8 @@ const HomePage: React.FC = () => {
   const { data: data } = useQuery<any>(GET_ARTICLES, {
     errorPolicy: "all",
     onCompleted: (res: any) => {
-      console.log("complete", res);
+      setNews(res.getArticles)
+      console.log("complete", res.getArticles);
     },
     onError: (error: any) => {
       console.error("GraphQL error:", error);
@@ -33,10 +34,10 @@ const HomePage: React.FC = () => {
   const handleClickLevel = async (level: string, color: string) => {
     setWordColor(color)
     try {
-      const topNews = await getNews();
-      const searchKanji = await search(level);
-      setKanjiList(searchKanji);
-      setNews(topNews);
+      // const topNews = await getNews();
+      // const searchKanji = await search(level);
+      // setKanjiList(searchKanji);
+      // setNews(topNews);
       
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -56,7 +57,7 @@ const HomePage: React.FC = () => {
 
     try { 
      
-      setNews(data.getArticles.articles);
+      
     } catch (error) {
       console.error('Error fetching data:', error);
     }
