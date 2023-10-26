@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 export const GET_KANJI = gql`
-  query GetKanji($level: Int!) {
+  query GetKanji($level: String!) {
     getKanji(level: $level) {
       word
     }

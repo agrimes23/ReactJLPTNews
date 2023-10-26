@@ -19,12 +19,23 @@ interface Kanji {
 const HomePage: React.FC = () => {
   const [kanjiList, setKanjiList] = useState<Kanji[]>([]);
   const [news, setNews] = useState<{ articles: Article[] }>({ articles: [] });
+  const [kanjiLevel, setKanjiLevel] = useState<string>("n5")
   const [wordColor, setWordColor] = useState<string>("black")
-  const { data: data } = useQuery<any>(GET_ARTICLES, {
+  const { data: data, refetch: refetchArticles } = useQuery<any>(GET_ARTICLES, {
     errorPolicy: "all",
     onCompleted: (res: any) => {
-      setNews(res.getArticles)
-      console.log("complete", res.getArticles);
+      setNews(res.getArticles)    
+      console.log("here again")
+    },
+    onError: (error: any) => {
+      console.error("GraphQL error:", error);
+    },
+  });
+
+  const { data: kanjiData, loading: kanjiLoading, error: kanjiError, refetch: refetchKanji } = useQuery(GET_KANJI, {
+    variables: { level: kanjiLevel },
+    onCompleted: (res: any) => {
+      console.log(JSON.stringify(res))    
     },
     onError: (error: any) => {
       console.error("GraphQL error:", error);
@@ -33,11 +44,16 @@ const HomePage: React.FC = () => {
 
   const handleClickLevel = async (level: string, color: string) => {
     setWordColor(color)
+
     try {
       // const topNews = await getNews();
       // const searchKanji = await search(level);
       // setKanjiList(searchKanji);
       // setNews(topNews);
+      setKanjiLevel(level)
+      refetchKanji({level})
+      refetchArticles()
+      console.log("click click: " + level)
       
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -139,7 +155,7 @@ const HomePage: React.FC = () => {
 
       {/* loop through each top headline title and description to display */}
       {news.articles.map((article, index) => (
-        <div key={index} className="mt-20 w-3/4 max-w-3xl rounded px-16 py-10 bg-slate-200">
+        <div key={index} className="mt-20 w-3/4 max-w-3xl rounded px-16 py-10 mb-20 bg-slate-200">
           <h4 className="text-xl font-bold">{article.title}</h4>
           {/* function to loop through kanjiList and each word in top headline description */}
           <p className="">{formatArticleDescription(article.description)}</p>
