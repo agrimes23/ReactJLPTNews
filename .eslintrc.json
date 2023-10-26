@@ -1,3 +1,17 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "no-console": ["error", { "allow": ["log", "error"] }],
+    "no-restricted-syntax": [
+      "error",
+      {
+        "selector": "CallExpression[callee.object.name='console'][callee.property.name=/^(log|error)$/]",
+        "message": "Uncommented console.log or console.error is not allowed."
+      },
+      {
+        "selector": "Literal[value=/localhost/]",
+        "message": "Uncommented localhost references are not allowed."
+      }
+    ]
+  }
 }

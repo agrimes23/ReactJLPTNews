@@ -6,16 +6,20 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "test": "node check-localhost.js",
+    "test-localhost": "node check-localhost.js",
+    "prepare": "husky install"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.6",
     "@types/node": "20.6.3",
     "@types/react": "18.2.22",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.16",
     "axios": "^1.5.0",
-    "eslint": "8.50.0",
     "eslint-config-next": "13.5.2",
+    "graphql": "^16.8.1",
     "next": "13.5.2",
     "postcss": "8.4.30",
     "react": "18.2.0",
@@ -23,6 +27,14 @@
     "typescript": "5.2.2"
   },
   "devDependencies": {
+    "eslint": "^8.51.0",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.1",
     "tailwindcss": "^3.3.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test-localhost"
+    }
   }
 }
