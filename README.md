@@ -1,4 +1,7 @@
-![image](https://github.com/agrimes23/ReactJLPTNews/assets/107214142/3b200d9f-803d-4b55-8480-e65b8e004e3a)# JLPT News Study App
+# JLPT News Study App
+<div style="text-align: center">
+<img src="public/news_app.PNG" alt="image" width="400" />
+</div>
 
 ## General Info
 This project serves as an immersive study app for the JLPT. It takes real life news descriptions and higlights the kanji characters based on JLPT (Japanese Language Proficiency Test) level. 

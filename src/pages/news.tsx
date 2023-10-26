@@ -153,15 +153,16 @@ const HomePage: React.FC = () => {
           <h4>1 級</h4>
         </button>
       </div>
-
-      {/* loop through each top headline title and description to display */}
-      {news.articles.map((article, index) => (
-        <div key={index} className="mt-20 w-3/4 max-w-3xl rounded px-16 py-10 mb-20 bg-slate-200">
-          <h4 className="text-xl font-bold">{article.title}</h4>
-          {/* function to loop through kanjiList and each word in top headline description */}
-          <p className="">{formatArticleDescription(article.description)}</p>
-        </div>
-      ))}
+      <div className="my-20 w-3/4 max-w-3xl flex flex-col items-center">
+        {/* loop through each top headline title and description to display */}
+        {news.articles.map((article, index) => (
+          <div key={index} className="my-5 rounded px-16 py-10 bg-slate-200">
+            <h4 className="text-xl font-bold">{article.title}</h4>
+            {/* function to loop through kanjiList and each word in top headline description */}
+            <p className="">{formatArticleDescription(article.description)}</p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
