@@ -1,7 +1,29 @@
 import React, { useState } from 'react';
 import Navbar from '@/components/navbar';
+import { useMutation } from '@apollo/client';
+import { LOGIN_USER } from '../graphql/queries';
 
 const Login: React.FC = () => {
+    const [loginUser] = useMutation(LOGIN_USER, {
+        errorPolicy: "all",
+        onCompleted: (res: any) => {   
+          console.log("login res: ", res)
+        },
+        onError: (error: any) => {
+          console.error("GraphQL error:", error);
+        },
+    });
+
+    // const { data: data, refetch: refetchArticles } = useMutation<any>(GET_ARTICLES, {
+    //     errorPolicy: "all",
+    //     onCompleted: (res: any) => {
+    //       setNews(res.getArticles)    
+    //       console.log("here again")
+    //     },
+    //     onError: (error: any) => {
+    //       console.error("GraphQL error:", error);
+    //     },
+    //   });
 
 
     const [inputValue, setInputValue] = useState({
@@ -22,6 +44,12 @@ const Login: React.FC = () => {
     const handleSubmit = async (e: any) => {
         e.preventDefault();
         console.log("oo submitted: email: ", email + ", Password: " + password)
+        try {
+            const { data } = await loginUser({ variables: { input: inputValue } });
+            // Handle the response, store the token, and redirect the user.
+          } catch (error) {
+            // Handle login error (e.g., incorrect credentials, server errors).
+          }
     }
 
     return (
