@@ -29,3 +29,29 @@ export const GET_ARTICLES = gql`
     }
   }
 `;
+
+export const REGISTER_USER = gql`
+  mutation RegisterUser($input: UserInput!) {
+    registerUser(input: $input) {
+      user {
+        id
+        name
+        email
+      }
+      token
+    }
+  }
+`;
+
+export const LOGIN_USER = gql`
+  mutation LoginUser($input: LoginInput!) {
+    loginUser(input: $input) {
+      user{
+        id
+        name
+        email
+      }
+      token
+    }
+  }
+`;
