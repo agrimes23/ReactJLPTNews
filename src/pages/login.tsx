@@ -2,6 +2,12 @@ import React, { useState } from 'react';
 import Navbar from '@/components/navbar';
 import { useMutation } from '@apollo/client';
 import { LOGIN_USER } from '../graphql/queries';
+import { useRouter } from 'next/router';
+
+const initialInputValue = {
+    email: "",
+    password: "",
+  };
 
 const Login: React.FC = () => {
     const [loginUser] = useMutation(LOGIN_USER, {
@@ -14,17 +20,7 @@ const Login: React.FC = () => {
         },
     });
 
-    // const { data: data, refetch: refetchArticles } = useMutation<any>(GET_ARTICLES, {
-    //     errorPolicy: "all",
-    //     onCompleted: (res: any) => {
-    //       setNews(res.getArticles)    
-    //       console.log("here again")
-    //     },
-    //     onError: (error: any) => {
-    //       console.error("GraphQL error:", error);
-    //     },
-    //   });
-
+    const router = useRouter();
 
     const [inputValue, setInputValue] = useState({
         email: "",
@@ -46,9 +42,11 @@ const Login: React.FC = () => {
         console.log("oo submitted: email: ", email + ", Password: " + password)
         try {
             const { data } = await loginUser({ variables: { input: inputValue } });
-            // Handle the response, store the token, and redirect the user.
+            setInputValue(initialInputValue)
+            router.push('/')
+            
           } catch (error) {
-            // Handle login error (e.g., incorrect credentials, server errors).
+            console.log("Login error: " + error)
           }
     }
 
@@ -63,7 +61,7 @@ const Login: React.FC = () => {
                         type="email"
                         name="email"
                         value={email}
-                        placeholder="Email or Student ID"
+                        placeholder="Please enter your email"
                         onChange={handleOnChange}
                     />
                     </div>
@@ -75,7 +73,7 @@ const Login: React.FC = () => {
                         type="password"
                         name="password"
                         value={password}
-                        placeholder="Password"
+                        placeholder="Please enter your password"
                         onChange={handleOnChange}
                     />
                     </div>
