@@ -53,7 +53,8 @@ const Login: React.FC = () => {
     <div className="flex flex-col min-h-screen min-w-screen items-center">
       <Navbar />
       <div className="flex items-center h-screen w-full justify-center">
-        <div className="bg-purple-200 py-20 w-4/12 rounded border border-purple-600">
+        <div className="bg-purple-200 pt-16 pb-20 w-4/12 rounded border border-purple-600">
+            <h2 className="text-4xl font-semibold mb-16 text-center">Login to JLPT News Study</h2>
           <form onSubmit={handleSubmit}>
             <div className="m-7 flex justify-center items-center ">
               <input

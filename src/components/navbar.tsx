@@ -14,7 +14,7 @@ function Navbar() {
     
     <>
         <div className="flex fixed justify-between top-0 z-10 px-10 bg-purple-300 w-screen py-5 shadow-md">
-            <h1>ニュース</h1>
+        <button onClick={() => router.push('/')} ><h1>ニュース</h1></button>
             <div>
                 <div className="flex flex-row">
                     <div className="flex flex-row mx-4">
